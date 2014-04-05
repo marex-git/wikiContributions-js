@@ -13,7 +13,7 @@ function getDiff(text1, text2) {
   var res = dmp.diff_main(strip_tags(text1), strip_tags(text2));
   dmp.diff_cleanupSemantic(res);
   $("#contr_value").text("Levenshtein distance value: " + dmp.diff_levenshtein(res));
-  return dmp.htmlDiff(res);
+  return htmlDiff(res);
 }
 
 function htmlDiff(diff) {
@@ -41,4 +41,6 @@ function htmlDiff(diff) {
 
     html += '</span>';
   }
+
+  return html;
 }
