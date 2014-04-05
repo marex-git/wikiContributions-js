@@ -21,31 +21,39 @@
 #diff_origin{
 	position: relative;
     float: left;
+	padding: 1%;
     margin-top: 15px;
 	margin-left: 10px;
-    width: 49%;
-    height: calc(100% - 51px);
+    width: 47%;
+    height: 76%;
     overflow: scroll;
     border-radius: 6px;
     box-shadow: inset 0px 0px 50px rgba(0, 0, 0, .3);
+	text-align: justify;
    }
 #diff_compare{
 	position: relative;
     float: right;
+	padding: 1%;
     margin-top: 15px;
 	margin-right: 10px;
-    width: 49%;
-    height: calc(100% - 51px);
+    width: 47%;
+    height: 76%;
     overflow: scroll;
     border-radius: 6px;
     box-shadow: inset 0px 0px 50px rgba(0, 0, 0, .3);
+	text-align: justify;	
 }
 
 .diff-insertion {
-	background: green;
+	padding: 1px;
+	background: #0abf0d;
+	color: #cdffc7;
 }
 .diff-deletion {
-	background: red;
+	padding: 1px;
+	background: #f01d1d;
+	color: #ffc7c7;
 }
 
 #diff_origin span.diff-insertion {
@@ -54,4 +62,8 @@
 
 #diff_compare span.diff-deletion {
 	visibility: hidden;
+}
+
+.btn_diff_selected {
+	border: 2px solid #d0ccff !important;
 }

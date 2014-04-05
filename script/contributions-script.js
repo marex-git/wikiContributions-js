@@ -366,12 +366,21 @@ $(document).ready(function () {
     }
   });
     
-  $('.diff_scroll_link').scroll(function(){
-    $('.diff_scroll_link').scrollTop($(this).scrollTop());    
+  $(".diff_scroll_link").scroll(function(){
+    $(".diff_scroll_link").scrollTop($(this).scrollTop());    
   });  
+  
+  $("#diff_controlers button").click(function() {
+	$("#diff_controlers button").not($(this)).removeClass("btn_diff_selected");
+	$(this).addClass("btn_diff_selected");
+  });
+  
+  $("#btn_mineVSprevious").addClass("btn_diff_selected");  
 });
 
 function getArticle(item) {
+  $("#btn_mineVSprevious").addClass("btn_diff_selected");
+
   var edits = "";
   if ($("#contente_article").css('left') === "0px") {
     $("#contente_article").animate({
