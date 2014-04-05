@@ -1,0 +1,131 @@
+{
+  "fr-CA": {
+    "title":
+      "",
+
+    "header":
+      "",
+
+    "send":
+      "",
+
+    "advanced_search":
+      "",
+
+    "from":
+      "",
+
+    "to":
+      "",
+
+    "no_edit":
+      "No minor edit: ",
+
+    "articles":
+      "",
+
+    "article":
+      "",
+
+    "size":
+      "",
+
+    "size_diff":
+      "",
+
+    "levenshtein":
+      "Levenshtein distance value: ",
+
+    "no":
+      "no",
+
+    "yes":
+      "yes",
+
+    "survived":
+      "The contribution survived: ",
+
+    "articles_which":
+      "",
+
+    "contributed_to":
+      "contributed to with total score: ",
+
+    "talks":
+      "talks",
+
+    "talk":
+      "talk",
+
+    "popup_username":
+      "",
+
+    "popup_url":
+      ""
+  },
+
+  "en-CA": {
+    "title":
+      "Grisou | Wiki contributions Project",
+
+    "header":
+      "GRISOU scientific contributions reporter by VOGG 2013",
+
+    "send":
+      "Send",
+
+    "advanced_search":
+      "Advanced search",
+
+    "from":
+      "",
+
+    "to":
+      "",
+
+    "no_edit":
+      "No minor edit: ",
+
+    "articles":
+      "",
+
+    "article":
+      "",
+
+    "size":
+      "",
+
+    "size_diff":
+      "",
+
+    "levenshtein":
+      "Levenshtein distance value: ",
+
+    "no":
+      "no",
+
+    "yes":
+      "yes",
+
+    "survived":
+      "The contribution survived: ",
+
+    "articles_which":
+      "",
+
+    "contributed_to":
+      "contributed to with total score: ",
+
+    "talks":
+      "talks",
+
+    "talk":
+      "talk",
+
+    "popup_username":
+      "",
+
+    "popup_url":
+      ""
+  }
+}
