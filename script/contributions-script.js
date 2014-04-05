@@ -1,5 +1,5 @@
 // Copyright VOGG 2013
-var oldText, newText, wiki, analysisTable, url, user, activeAjaxConnections = 0,
+var firstText, nextText, currentText, oldText, newText, wiki, analysisTable, url, user, activeAjaxConnections = 0,
 tabSelected = "Articles";
 
 function clearScreen() {
@@ -136,6 +136,10 @@ function callback_Q4(response) {
   newText = response.parse.text["*"];
 }
 
+/*function callback_Q6(response) {
+  currentText = response.parse.text["*"];
+}*/
+
 function doGet(url, query) {
   $.ajax({
     url: url,
@@ -152,6 +156,8 @@ function doGet(url, query) {
         callback_Q4(response);
       }else if (query === "Q5") {
         callback_Q1(response, true);
+      }else if (query === "Q6") {
+        callback_Qtest(response);
       }
     }
   });
@@ -164,6 +170,31 @@ function getNextUserContributions(timestamp){
       "&ucuser=" + user + "&ucstart=" + timestamp +
       "&ucdir=older&ucnamespace=0&ucprop=ids%7Ctitle%7Ctimestamp%7Ccomment%7Csize%7Csizediff&&converttitles=";
   doGet(wikiUrl, "Q5");
+}
+
+function getFirstContributions(pageid){
+  var wikiUrl = wiki + "/w/api.php?action=query&prop=revisions&rvprop=ids&pageids=" + pageid + "&rvdir=newer&rvlimit=1&format=json";
+  $.ajax({
+	  url: wikiUrl,
+	  dataType: "jsonp",
+	  type: 'GET',
+	  success: function (response) {
+		callback_firstText(response, parseInt(pageid));
+	  }
+	});
+}
+
+function callback_firstText(data, pageid) {
+    var revid = data.query.pages[pageid].revisions[0].revid;
+	var url = wiki + "/w/api.php?action=parse&format=json&oldid=" + revid + "&prop=text";
+	$.ajax({
+      url: url,
+      dataType: "jsonp",
+      type: 'GET',
+      success: function (response) {
+        firstText = response.parse.text["*"];
+      }
+    })
 }
 
 function getJsonWiki() {
@@ -310,10 +341,24 @@ function getArticle(item) {
   } else {
     loading();
   }
+  
+  
+  
   var title = $(item).find(".list_articles_item_title").text();
   var parentid = $(item).find(".list_articles_item_parentid").val();
   var revid = $(item).find(".list_articles_item_revid").val();
+  var pageid = $(item).find(".list_articles_item_pageid").val();
+  
+  var yolo = getFirstContributions(pageid);
+  
+  //http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=ids&titles=Albert_Einstein&rvdir=newer&rvlimit=1
+  //http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=ids&titles=Albert_Einstein&rvdir=older&rvlimit=1
+  
+  var firstRevisionContent = wiki + "/w/api.php?action=parse&format=json&pageid=" + pageid + "+&prop=text&rvdir=newer&rvlimit=1";
+  var currentContent = wiki + "/w/api.php?action=parse&format=json&pageid=" + pageid + "&prop=text";
+  //var latestRevisionContent = wiki + "/w/api.php?action=parse&format=json&pageid=" + pageid + "+&prop=text&rvdir=older&rvlimit=1";
   var oldRevisionContent = wiki + "/w/api.php?action=parse&format=json&oldid=" + parentid + "&prop=text";
+  var nextRevisionContent = wiki + "/w/api.php?action=parse&format=json&pageid=" + pageid + "+&prop=text&rvstartid=" + revid + "&rvlimit=1";
   var userRevisionContent = wiki + "/w/api.php?action=parse&format=json&oldid=" + revid + "&prop=text";
   $.when(
     $.ajax({
@@ -334,7 +379,15 @@ function getArticle(item) {
       success: function (response) {
         callback_Q4(response);
       }
-    })
+    })/*,
+	$.ajax({
+      url: currentContent,
+      dataType: "jsonp",
+      type: 'GET',
+      success: function (response) {
+        callback_Q6(response);
+      }
+    })*/
   ).then(function () {
     activeAjaxConnections--;
     analysisTable = getDiff(oldText, newText);
