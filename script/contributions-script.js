@@ -431,3 +431,27 @@ function getArticle(item) {
     }
   });
 }
+
+function loadFirstContrib() {
+  var html = getDiff(fistText, newText);
+  $("#diff_origin").html(html);
+  $("#diff_origin").html(html);
+}
+
+function loadNextContrib() {
+  var html = getDiff(nextText, newText);
+  $("#diff_origin").html(html);
+  $("#diff_origin").html(html);
+}
+
+function loadPrevContrib() {
+  var html = getDiff(oldText, newText);
+  $("#diff_origin").html(html);
+  $("#diff_origin").html(html);
+}
+
+function loadLastContrib() {
+  var html = getDiff(currentText, newText);
+  $("#diff_origin").html(html);
+  $("#diff_origin").html(html);
+}
