@@ -1,49 +1,13 @@
 ﻿{
   "fr-CA": {
-    "title":
-      "Grisou | Projet de contributions Wiki",
-
-    "header":
-      "Outil de reconnaissance de contributions scientifiques par VOGG 2013 (GRISOU)",
-
-    "send":
-      "Envoyer",
-
     "advanced_search":
       "Recherche avancée",
-
-    "from":
-      "Du",
-
-    "to":
-      "Au",
-
-    "no_edit":
-      "Aucune modifications mineures : ",
-
-    "articles":
-      "Articles",
 
     "article":
       "Article",
 
-    "size":
-      "Taille :",
-
-    "size_diff":
-      "Différence de taille :",
-
-    "levenshtein":
-      "Valeur de distance de Levenshtein : ",
-
-    "no":
-      "Non",
-
-    "yes":
-      "Oui",
-
-    "survived":
-      "La contribution a survécu : ",
+    "articles":
+      "Articles",
 
     "articles_which":
       "Articles auxquels",
@@ -51,64 +15,64 @@
     "contributed_to":
       "a contribué(e) avec un score total de : ",
 
-    "talks":
-      "Discussions",
+    "from":
+      "Du",
 
-    "talk":
-      "Discussion",
+    "header":
+      "Outil de reconnaissance de contributions scientifiques par VOGG 2013 (GRISOU)",
+
+    "levenshtein":
+      "Valeur de distance de Levenshtein : ",
+
+    "no":
+      "Non",
+
+    "no_edit":
+      "Aucune modifications mineures : ",
+
+    "popup_url":
+      "Entrer le URL du site web Wikipédia où le contributeur a contribué (sans http://). Exemple : fr.wikipedia.org",
 
     "popup_username":
       "Entrer le nom d'utilisateur ou l'adresse IP du contributeur",
 
-    "popup_url":
-      "Entrer le URL du site web Wikipédia où le contributeur a contribué (sans http://). Exemple : fr.wikipedia.org"
+    "send":
+      "Envoyer",
+
+    "size":
+      "Taille :",
+
+    "size_diff":
+      "Différence de taille :",
+
+    "survived":
+      "La contribution a survécu : ",
+
+    "talk":
+    "Discussion",
+
+    "talks":
+      "Discussions",
+
+    "title":
+      "Grisou | Projet de contributions Wiki",
+
+    "to":
+      "Au",
+
+    "yes":
+      "Oui"
   },
 
   "en-CA": {
-    "title":
-      "Grisou | Wiki contributions Project",
-
-    "header":
-      "GRISOU scientific contributions reporter by VOGG 2013",
-
-    "send":
-      "Send",
-
     "advanced_search":
       "Advanced search",
-
-    "from":
-      "From",
-
-    "to":
-      "To",
-
-    "no_edit":
-      "No minor edit: ",
-
-    "articles":
-      "Articles",
 
     "article":
       "Article",
 
-    "size":
-      "Size: ",
-
-    "size_diff":
-      "Size diff: ",
-
-    "levenshtein":
-      "Levenshtein distance value: ",
-
-    "no":
-      "No",
-
-    "yes":
-      "Yes",
-
-    "survived":
-      "The contribution survived: ",
+    "articles":
+      "Articles",
 
     "articles_which":
       "Articles which",
@@ -116,16 +80,52 @@
     "contributed_to":
       "contributed to with total score: ",
 
-    "talks":
-      "Talks",
+    "from":
+      "From",
 
-    "talk":
-      "Talk",
+    "header":
+      "GRISOU scientific contributions reporter by VOGG 2013",
+
+    "levenshtein":
+      "Levenshtein distance value: ",
+
+    "no":
+      "No",
+
+    "no_edit":
+      "No minor edit: ",
+
+    "popup_url":
+      "Enter the URL for the Wikipedia web site the contributor has contributed to (without the http://), Example: en.wikipedia.org",
 
     "popup_username":
       "Enter the username or IP address of the contributor.",
 
-    "popup_url":
-      "Enter the URL for the Wikipedia web site the contributor has contributed to (without the http://), Example: en.wikipedia.org"
+    "title":
+      "Grisou | Wiki contributions Project",
+
+    "send":
+      "Send",
+
+    "size":
+      "Size: ",
+
+    "size_diff":
+      "Size diff: ",
+
+    "survived":
+      "The contribution survived: ",
+
+    "talk":
+      "Talk",
+
+    "talks":
+      "Talks",
+
+    "to":
+      "To",
+
+    "yes":
+      "Yes"
   }
 }
