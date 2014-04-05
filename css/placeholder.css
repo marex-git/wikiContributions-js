@@ -21,24 +21,28 @@
 #diff_origin{
 	position: relative;
     float: left;
+	padding: 1%;
     margin-top: 15px;
 	margin-left: 10px;
-    width: 49%;
+    width: 47%;
     height: calc(100% - 51px);
     overflow: scroll;
     border-radius: 6px;
     box-shadow: inset 0px 0px 50px rgba(0, 0, 0, .3);
+	text-align: justify;
    }
 #diff_compare{
 	position: relative;
     float: right;
+	padding: 1%;
     margin-top: 15px;
 	margin-right: 10px;
-    width: 49%;
+    width: 47%;
     height: calc(100% - 51px);
     overflow: scroll;
     border-radius: 6px;
     box-shadow: inset 0px 0px 50px rgba(0, 0, 0, .3);
+	text-align: justify;	
 }
 
 .diff-insertion {
