@@ -136,10 +136,6 @@ function callback_Q4(response) {
   newText = response.parse.text["*"];
 }
 
-function callback_Q6(response) {
-  currentText = response.parse.text["*"];
-}
-
 function doGet(url, query) {
   $.ajax({
     url: url,
@@ -156,8 +152,6 @@ function doGet(url, query) {
         callback_Q4(response);
       }else if (query === "Q5") {
         callback_Q1(response, true);
-      }else if (query === "Q6") {
-        callback_Qtest(response);
       }
     }
   });
@@ -172,7 +166,7 @@ function getNextUserContributions(timestamp){
   doGet(wikiUrl, "Q5");
 }
 
-function getFirstContributions(pageid){
+function getFirstContribution(pageid){
   var wikiUrl = wiki + "/w/api.php?action=query&prop=revisions&rvprop=ids&pageids=" + pageid + "&rvdir=newer&rvlimit=1&format=json";
   $.ajax({
 	  url: wikiUrl,
@@ -226,6 +220,18 @@ function callback_nextText(data, pageid) {
         nextText = response.parse.text["*"];
       }
     })
+}
+
+function getCurrentArticleContribution(pageid) {
+	var wikiUrl = wiki + "/w/api.php?action=parse&format=json&pageid=" + pageid + "&prop=text";
+    $.ajax({
+	  url: wikiUrl,
+	  dataType: "jsonp",
+	  type: 'GET',
+	  success: function (response) {
+		currentText = response.parse.text["*"];
+	  }
+	});
 }
 
 function getJsonWiki() {
@@ -378,19 +384,13 @@ function getArticle(item) {
   var revid = $(item).find(".list_articles_item_revid").val();
   var pageid = $(item).find(".list_articles_item_pageid").val();
   
-  getFirstContributions(pageid);
+  getFirstContribution(pageid);
   getNextContribution(pageid, revid);
+  getCurrentArticleContribution(pageid);
   
-  
-  //http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=ids&titles=Albert_Einstein&rvdir=newer&rvlimit=1
-  //http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=ids&titles=Albert_Einstein&rvdir=older&rvlimit=1
-  
-  var firstRevisionContent = wiki + "/w/api.php?action=parse&format=json&pageid=" + pageid + "+&prop=text&rvdir=newer&rvlimit=1";
-  var currentContent = wiki + "/w/api.php?action=parse&format=json&pageid=" + pageid + "&prop=text";
-  //var latestRevisionContent = wiki + "/w/api.php?action=parse&format=json&pageid=" + pageid + "+&prop=text&rvdir=older&rvlimit=1";
   var oldRevisionContent = wiki + "/w/api.php?action=parse&format=json&oldid=" + parentid + "&prop=text";
-  var nextRevisionContent = wiki + "/w/api.php?action=parse&format=json&pageid=" + pageid + "+&prop=text&rvstartid=" + revid + "&rvlimit=1";
   var userRevisionContent = wiki + "/w/api.php?action=parse&format=json&oldid=" + revid + "&prop=text";
+  
   $.when(
     $.ajax({
       beforeSend: function (xhr) {
@@ -409,14 +409,6 @@ function getArticle(item) {
       type: 'GET',
       success: function (response) {
         callback_Q4(response);
-      }
-    }),
-	$.ajax({
-      url: currentContent,
-      dataType: "jsonp",
-      type: 'GET',
-      success: function (response) {
-        callback_Q6(response);
       }
     })
   ).then(function () {
