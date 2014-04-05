@@ -49,19 +49,19 @@
       "",
 
     "contributed_to":
-      "contributed to with total score: ",
+      "a contribué(e) avec un score total de : ",
 
     "talks":
-      "talks",
+      "Discussions",
 
     "talk":
-      "talk",
+      "Discussion",
 
     "popup_username":
-      "",
+      "Entrer le nom d'utilisateur ou l'adresse IP du contributeur",
 
     "popup_url":
-      ""
+      "Entrer le URL du site web wikipedia où le contributeur à contribuer (sans http://). Exemple : fr.wikipedia.org"
   },
 
   "en-CA": {
@@ -117,10 +117,10 @@
       "contributed to with total score: ",
 
     "talks":
-      "talks",
+      "Talks",
 
     "talk":
-      "talk",
+      "Talk",
 
     "popup_username":
       "Enter the username or ip address of the contributor.",
