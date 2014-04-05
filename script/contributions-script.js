@@ -136,9 +136,9 @@ function callback_Q4(response) {
   newText = response.parse.text["*"];
 }
 
-/*function callback_Q6(response) {
+function callback_Q6(response) {
   currentText = response.parse.text["*"];
-}*/
+}
 
 function doGet(url, query) {
   $.ajax({
@@ -193,6 +193,37 @@ function callback_firstText(data, pageid) {
       type: 'GET',
       success: function (response) {
         firstText = response.parse.text["*"];
+      }
+    })
+}
+
+function getNextContribution(pageid, revid){
+  var wikiUrl = wiki + "/w/api.php?action=query&prop=revisions&rvprop=ids&pageids=" + pageid + "&rvdir=newer&rvlimit=2&rvstartid=" + revid + "&format=json";
+  $.ajax({
+	  url: wikiUrl,
+	  dataType: "jsonp",
+	  type: 'GET',
+	  success: function (response) {
+		callback_nextText(response, parseInt(pageid));
+	  }
+	});
+}
+
+function callback_nextText(data, pageid) {
+	var revisions = data.query.pages[pageid].revisions;
+	var revid;
+	if(revisions.length < 2) {
+		revid = revisions[0].revid;
+	}else {
+		revid = revisions[1].revid;
+	}
+	var url = wiki + "/w/api.php?action=parse&format=json&oldid=" + revid + "&prop=text";
+	$.ajax({
+      url: url,
+      dataType: "jsonp",
+      type: 'GET',
+      success: function (response) {
+        nextText = response.parse.text["*"];
       }
     })
 }
@@ -341,15 +372,15 @@ function getArticle(item) {
   } else {
     loading();
   }
-  
-  
-  
+
   var title = $(item).find(".list_articles_item_title").text();
   var parentid = $(item).find(".list_articles_item_parentid").val();
   var revid = $(item).find(".list_articles_item_revid").val();
   var pageid = $(item).find(".list_articles_item_pageid").val();
   
-  var yolo = getFirstContributions(pageid);
+  getFirstContributions(pageid);
+  getNextContribution(pageid, revid);
+  
   
   //http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=ids&titles=Albert_Einstein&rvdir=newer&rvlimit=1
   //http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=ids&titles=Albert_Einstein&rvdir=older&rvlimit=1
@@ -379,7 +410,7 @@ function getArticle(item) {
       success: function (response) {
         callback_Q4(response);
       }
-    })/*,
+    }),
 	$.ajax({
       url: currentContent,
       dataType: "jsonp",
@@ -387,7 +418,7 @@ function getArticle(item) {
       success: function (response) {
         callback_Q6(response);
       }
-    })*/
+    })
   ).then(function () {
     activeAjaxConnections--;
     analysisTable = getDiff(oldText, newText);
