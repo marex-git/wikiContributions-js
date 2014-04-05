@@ -1,5 +1,5 @@
 // Copyright VOGG 2013
-var oldText, newText, wiki, analysisTable, url, user, activeAjaxConnections = 0,
+var firstText, nextText, currentText, oldText, newText, wiki, analysisTable, url, user, activeAjaxConnections = 0,
 tabSelected = "Articles";
 
 function clearScreen() {
@@ -166,6 +166,74 @@ function getNextUserContributions(timestamp){
   doGet(wikiUrl, "Q5");
 }
 
+function getFirstContribution(pageid){
+  var wikiUrl = wiki + "/w/api.php?action=query&prop=revisions&rvprop=ids&pageids=" + pageid + "&rvdir=newer&rvlimit=1&format=json";
+  $.ajax({
+	  url: wikiUrl,
+	  dataType: "jsonp",
+	  type: 'GET',
+	  success: function (response) {
+		callback_firstText(response, parseInt(pageid));
+	  }
+	});
+}
+
+function callback_firstText(data, pageid) {
+    var revid = data.query.pages[pageid].revisions[0].revid;
+	var url = wiki + "/w/api.php?action=parse&format=json&oldid=" + revid + "&prop=text";
+	$.ajax({
+      url: url,
+      dataType: "jsonp",
+      type: 'GET',
+      success: function (response) {
+        firstText = response.parse.text["*"];
+      }
+    })
+}
+
+function getNextContribution(pageid, revid){
+  var wikiUrl = wiki + "/w/api.php?action=query&prop=revisions&rvprop=ids&pageids=" + pageid + "&rvdir=newer&rvlimit=2&rvstartid=" + revid + "&format=json";
+  $.ajax({
+	  url: wikiUrl,
+	  dataType: "jsonp",
+	  type: 'GET',
+	  success: function (response) {
+		callback_nextText(response, parseInt(pageid));
+	  }
+	});
+}
+
+function callback_nextText(data, pageid) {
+	var revisions = data.query.pages[pageid].revisions;
+	var revid;
+	if(revisions.length < 2) {
+		revid = revisions[0].revid;
+	}else {
+		revid = revisions[1].revid;
+	}
+	var url = wiki + "/w/api.php?action=parse&format=json&oldid=" + revid + "&prop=text";
+	$.ajax({
+      url: url,
+      dataType: "jsonp",
+      type: 'GET',
+      success: function (response) {
+        nextText = response.parse.text["*"];
+      }
+    })
+}
+
+function getCurrentArticleContribution(pageid) {
+	var wikiUrl = wiki + "/w/api.php?action=parse&format=json&pageid=" + pageid + "&prop=text";
+    $.ajax({
+	  url: wikiUrl,
+	  dataType: "jsonp",
+	  type: 'GET',
+	  success: function (response) {
+		currentText = response.parse.text["*"];
+	  }
+	});
+}
+
 function getJsonWiki() {
   clearScreen();
   var uclimitContribution = getUclimitCourrent();
@@ -314,11 +382,19 @@ function getArticle(item) {
   } else {
     loading();
   }
+
   var title = $(item).find(".list_articles_item_title").text();
   var parentid = $(item).find(".list_articles_item_parentid").val();
   var revid = $(item).find(".list_articles_item_revid").val();
+  var pageid = $(item).find(".list_articles_item_pageid").val();
+  
+  getFirstContribution(pageid);
+  getNextContribution(pageid, revid);
+  getCurrentArticleContribution(pageid);
+  
   var oldRevisionContent = wiki + "/w/api.php?action=parse&format=json&oldid=" + parentid + "&prop=text";
   var userRevisionContent = wiki + "/w/api.php?action=parse&format=json&oldid=" + revid + "&prop=text";
+  
   $.when(
     $.ajax({
       beforeSend: function (xhr) {
