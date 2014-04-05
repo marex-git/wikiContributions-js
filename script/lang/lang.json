@@ -78,25 +78,25 @@
       "Advanced search",
 
     "from":
-      "",
+      "From",
 
     "to":
-      "",
+      "To",
 
     "no_edit":
       "No minor edit: ",
 
     "articles":
-      "",
+      "Articles",
 
     "article":
-      "",
+      "Article",
 
     "size":
-      "",
+      "Size: ",
 
     "size_diff":
-      "",
+      "Size diff: ",
 
     "levenshtein":
       "Levenshtein distance value: ",
@@ -111,7 +111,7 @@
       "The contribution survived: ",
 
     "articles_which":
-      "",
+      "Articles which",
 
     "contributed_to":
       "contributed to with total score: ",
@@ -123,9 +123,9 @@
       "talk",
 
     "popup_username":
-      "",
+      "Enter the username or ip address of the contributor.",
 
     "popup_url":
-      ""
+      "Enter the url for the wikipedia web site the contributor has contributed to (without the http://), Example: en.wikipedia.org"
   }
 }
