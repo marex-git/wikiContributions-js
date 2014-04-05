@@ -297,6 +297,10 @@ $(document).ready(function () {
       $("#advanced_search_elems_container").slideUp(400);
     }
   });
+    
+  $('.diff_scroll_link').scroll(function(){
+    $('.diff_scroll_link').scrollTop($(this).scrollTop());    
+  });  
 });
 
 function getArticle(item) {
