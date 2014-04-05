@@ -442,25 +442,43 @@ function getArticle(item) {
 }
 
 function loadFirstContrib() {
-  var html = getDiff(fistText, newText);
-  $("#diff_origin").html(html);
+  var html = getDiff(firstText, newText);
+  $("#diff_compare").html(html);
   $("#diff_origin").html(html);
 }
 
 function loadNextContrib() {
   var html = getDiff(nextText, newText);
-  $("#diff_origin").html(html);
+  $("#diff_compare").html(html);
   $("#diff_origin").html(html);
 }
 
 function loadPrevContrib() {
   var html = getDiff(oldText, newText);
-  $("#diff_origin").html(html);
+  $("#diff_compare").html(html);
   $("#diff_origin").html(html);
 }
 
 function loadLastContrib() {
   var html = getDiff(currentText, newText);
-  $("#diff_origin").html(html);
+  $("#diff_compare").html(html);
   $("#diff_origin").html(html);
 }
+
+$(function() {
+	$( "#btn_mineVSorigin" ).click(function() {
+	  loadFirstContrib();
+	});
+	
+	$( "#btn_mineVSlast" ).click(function() {
+	  loadLastContrib();
+	});
+	
+	$( "#btn_mineVSprevious" ).click(function() {
+	  loadPrevContrib();
+	});
+	
+	$( "#btn_mineVSnext" ).click(function() {
+	  loadNextContrib();
+	});
+});
