@@ -343,7 +343,7 @@ function getArticle(item) {
       $("#article_head").text("Article: '" + title + "' on " + $("#url").val());
       $("#contr_survived").text("The contribution survived: No");
       $("#diff_origin").html(edits);
-      $("#diff_other").html(edits);
+      $("#diff_compare").html(edits);
       stopLoading();
       $("#contente_article").animate({
         left: "0%"

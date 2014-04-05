@@ -1,0 +1,55 @@
+#diff_container{
+	position: relative;
+    float: right;
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: calc(100% - 285px);
+    height: calc(100% - 51px);
+    overflow: scroll;
+    border-radius: 6px;
+    box-shadow: inset 0px 0px 50px rgba(0, 0, 0, .3);
+}
+#diff_controlers{
+	position: relative;
+    top: 10px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    width: calc(100% - 285px);
+    height: 51px;
+}
+#diff_origin{
+	position: relative;
+    float: left;
+    margin-top: 15px;
+	margin-left: 10px;
+    width: 49%;
+    height: calc(100% - 51px);
+    border-radius: 6px;
+    box-shadow: inset 0px 0px 50px rgba(0, 0, 0, .3);
+   }
+#diff_compare{
+	position: relative;
+    float: right;
+    margin-top: 15px;
+	margin-right: 10px;
+    width: 49%;
+    height: calc(100% - 51px);
+    border-radius: 6px;
+    box-shadow: inset 0px 0px 50px rgba(0, 0, 0, .3);
+}
+
+.diff-insertion {
+	background: green;
+}
+.diff-deletion {
+	background: red;
+}
+
+#diff_origin span.diff-insertion {
+	visibility: hidden;
+}
+
+#diff_compare span.diff-deletion {
+	visibility: hidden;
+}
