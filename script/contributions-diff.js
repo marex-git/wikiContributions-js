@@ -20,7 +20,6 @@ function htmlDiff(diff) {
   var i;
   var html = '';
   var text;
-
   for (i = 0; i < diff.length; i++) {
     switch (diff[i][0]) {
       case 1:
@@ -34,7 +33,7 @@ function htmlDiff(diff) {
         break;
     }
 
-    text = diff[0][1];
+    text = diff[i][1];
     html += text.replace(/\n/g, "<br>");
 
     html += '</span>';
